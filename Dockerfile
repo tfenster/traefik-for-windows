@@ -7,11 +7,9 @@ ENV VERSION=$VERSION
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-RUN $url = ('https://github.com/traefik/traefik/releases/download/' + $env:VERSION + '/traefik_windows-amd64.zip'); `
-    Write-Host "Downloading and expanding $url"; `
-    Invoke-WebRequest -Uri $url -OutFile '/traefik.zip' -UseBasicParsing; `
-    Expand-Archive -Path '/traefik.zip' -DestinationPath '/' -Force; `
-    Remove-Item '/traefik.zip' -Force;
+RUN $url = ('https://github.com/traefik/traefik/releases/download/' + $env:VERSION + '/traefik_windows-amd64.exe'); `
+    Write-Host "Downloading $url"; `
+    Invoke-WebRequest -Uri $url -OutFile '/traefik.exe' -UseBasicParsing; 
 
 EXPOSE 80
 ENTRYPOINT ["/traefik"]
