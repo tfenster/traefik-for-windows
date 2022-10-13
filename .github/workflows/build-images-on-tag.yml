@@ -30,7 +30,7 @@ jobs:
         $manifestCmd = "docker manifest create $($name)"
         $manifestPushCmd = "docker manifest push $($name)"
         $latestManifestCmd = "docker manifest create $($latest)"
-        $latestManifestPushCmd = "docker manifest push $($ltest)"
+        $latestManifestPushCmd = "docker manifest push $($latest)"
 
         $buildCmds = New-Object System.Collections.Generic.List[System.String]
         $imgPushCmds = New-Object System.Collections.Generic.List[System.String]
