@@ -7,6 +7,21 @@ on:
 
 jobs:
 
+  start-vm:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: "Az login"
+      shell: bash
+      run: |
+        az login --service-principal -u ${{ secrets.sp_appid }} -p ${{ secrets.sp_pwd }} --tenant ${{ secrets.sp_tenant }}
+        
+    - name: "Az start VM"
+      shell: bash
+      run: |
+        az vm start --name dockerhost --resource-group gui-cont-gh-runner --no-wait
+
   build:
 
     runs-on: self-hosted
